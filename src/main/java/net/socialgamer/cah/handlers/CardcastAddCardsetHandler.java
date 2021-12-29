@@ -40,7 +40,7 @@ public class CardcastAddCardsetHandler extends GameWithPlayerHandler {
       final HttpSession session, final User user, final Game game) {
     final Map<ReturnableData, Object> data = new HashMap<ReturnableData, Object>();
 
-    if (game.getHost() != user) {
+    if ((game.getHost() != user) || !user.isAdmin) {
       return error(ErrorCode.NOT_GAME_HOST);
     } else if (game.getState() != GameState.LOBBY) {
       return error(ErrorCode.ALREADY_STARTED);
